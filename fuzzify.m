@@ -18,7 +18,6 @@ switch choice
         parameters = parametersq;
         limits = limitsq;
 end
-
 n_rules = length(parameters);
 out = zeros(n_rules, 1);
 inp = min(max(inp,limits(1)),limits(2));

@@ -50,9 +50,8 @@ end
 E(k)=r(k)-l(k);
 dl(k) = l(k) - l(k-1);
 
-valve_action = pipeline(E(k), dl(k));
-temp = q_low + ((q_high - q_low)/(limitsq(2)-limitsq(1)))*(valve_action - limitsq(1));
-q(k) = temp;
+dq(k)=Kc*(E(k)-E(k-1)+(dt/tau_I)*E(k)+(tau_D/dt)*(E(k)-2*E(k-1)+E(k-2)));
+q(k)=q(k-1)+dq(k);
 
 qin=q(k);
 [t,m1] = ode45('level',[tinitial,tfinal],s_s1);
