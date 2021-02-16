@@ -42,8 +42,26 @@
     * You have to repeat this for each rule that you have.
     * Now if you have l rules, you will have l strengths of these rules, denoted by w_hat_i.
     * Normalize these strengths by dividing each strength by the sum of l strengths. This normalised value is called the firing strength of the rule.
-    * Not take the DFs that represent the consequents of the rules. In this case it is _Close Fast_. Each rule will have a corresponding DF, with its parameters $c_i$ and $epsilon_i$.
+    * Now take the DFs that represent the consequents of the rules. In this case it is _Close Fast_. Each rule will have a corresponding DF, with its parameters $c_i$ and $epsilon_i$.
     * The output of the rule base is a DF which is the weighted sum of each DF. We can directly calculate the parameters of this new DF using the firing strengths $w_i$, $c_i$ and $epsilon_i$.
     * The new $c_{agg}$ is the weighted sum of $c_i$s and likewise for $epsilon_{agg}$. Find these.
     * With these values, we define the aggregated output DF $DF_{agg}$. To get the defuzzified output o the controller, we find the COG of $DF_{agg}$ using Eq. 9 and 11. Pro-tip, for a symmetric DF, the COG is $c$. So $c_{agg}$ is the output of the DF and can be obtained directly from above.
     * The final output of the pipeline will be the COG. Return this value.
+
+## 16th Feb
+
+* Define our DFs
+  * Error
+    * Divide from -1 to 1
+      * High
+      * OK
+      * Low
+  * Level Rate
+    * -0.1 to 0.1
+      * Negative
+      * DC
+      * Positive
+  * Input Flow Rate
+    * -60 to 60
+      * Divide range into 5 DFs
+* Rulebase

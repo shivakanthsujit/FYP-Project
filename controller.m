@@ -7,11 +7,10 @@ parameters = {
 n_rules = length(parameters);
 
 inp = 0.3;
-out = 0.0;
-for i=1:length(parameters)
+out = zeros(n_rules, 1);
+for i=1:n_rules
     out(i) = DF(inp, parameters{i}(1), parameters{i}(2), parameters{i}(3), parameters{i}(4));
 end
-out
 
 % inp = [-10:0.01:10];
 % out = {

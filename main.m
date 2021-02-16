@@ -22,7 +22,7 @@ ttfinal = fix(length(r)*dt);
 tt = 0:dt:ttfinal;
 kfinal=length(tt); % Sim Time
 
-Kc=30;
+Kc=10;
 tau_I=0.3367;
 tau_D=0.1926;
 
