@@ -4,9 +4,9 @@ global parametersq
 global limitsE
 global limitsdy
 global limitsq
+global params
 
-para = 0;
-switch para
+switch params
     
     case 0
         % v, epsilon lamda c
@@ -42,9 +42,9 @@ switch para
         limitsE = [-1 1];
 
         parametersdy = {
-                        [0.5 0.3 2 -0.1],
-                        [0.5 0.1 2 0],
-                        [0.5 0.3 2 0.1]
+                        [0.5 0.1 2 -0.1],
+                        [0.5 0.05 2 0],
+                        [0.5 0.1 2 0.1]
                         };
         limitsdy = [-0.1 0.1];
 

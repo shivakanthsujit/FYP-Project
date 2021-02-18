@@ -1,7 +1,10 @@
 function hprime=level(t, h)
 global qin
-Ao = 8;
-At = 10;
-g = 9.8;
-h = max(0, h);
-hprime=(qin-Ao*sqrt(2 * g * h))/At;
+global qout
+global Ao
+global g
+global At
+global hmin
+h = max(hmin, h);
+qout = Ao*sqrt(2 * g * h);
+hprime=(qin-qout)/At;
