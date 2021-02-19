@@ -1,10 +1,10 @@
 % v, epsilon lamda c
-global parametersE
-global parametersdy
-global parametersq
-global limitsE
-global limitsdy
-global limitsq
+global param_e
+global param_dy
+global param_sq
+global limits_e
+global limits_dy
+global limits_sq
 global params
 
 params = 1;
@@ -13,22 +13,22 @@ choice = 1;
 
 switch choice
     case 0
-        parameters = parametersE;
-        limits = limitsE;
+        params = param_e;
+        limits = limits_e;
     case 1
-        parameters = parametersdy;
-        limits = limitsdy;
+        params = param_dy;
+        limits = limits_dy;
     case 2
-        parameters = parametersq;
-        limits = limitsq;
+        params = param_sq;
+        limits = limits_sq;
 end
 
-n_rules = length(parameters);
+n_rules = length(params);
 
 % inp = 0.3;
 % out = zeros(n_rules, 1);
 % for i=1:n_rules
-%     out(i) = DF(inp, parameters{i}(1), parameters{i}(2), parameters{i}(3), parameters{i}(4));
+%     out(i) = DF(inp, params{i}(1), params{i}(2), params{i}(3), params{i}(4));
 % end
 
 inp = [-10:0.01:10];
@@ -39,7 +39,7 @@ out = {
     };
 for k=1:length(inp)
     for i=1:n_rules
-        out{i}(k) = DF(inp(k), parameters{i}(1), parameters{i}(2), parameters{i}(3), parameters{i}(4));
+        out{i}(k) = DF(inp(k), params{i}(1), params{i}(2), params{i}(3), params{i}(4));
     end
 end
 

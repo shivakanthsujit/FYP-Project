@@ -1,7 +1,7 @@
 % Algo 1
 
-function result=pipeline(E, dy)
-global parametersq
+function result=fuzzy_controller(E, dy)
+global param_sq
 
 % Step 1, 2 
 E = fuzzify(E, 0);
@@ -28,8 +28,8 @@ end
 w_sum = sum(w_hats);
 w = w_hats/w_sum;
 
-c = cellfun(@(a) a(1, 4), parametersq);
-e = cellfun(@(a) a(1, 2), parametersq);
+c = cellfun(@(a) a(1, 4), param_sq);
+e = cellfun(@(a) a(1, 2), param_sq);
 c_agg = w * c;  % Center of gravity of resulting DF
 e_agg = w * e;
 

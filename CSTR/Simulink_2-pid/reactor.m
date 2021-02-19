@@ -62,7 +62,7 @@ function [sys,x0,str,ts,simStateCompliance]=mdlInitializeSizes()
 %
 % Note that in this example, the values are hard coded.  This is not a
 % recommended practice as the characteristics of the block are typically
-% defined by the S-function parameters.
+% defined by the S-function params.
 %
 sizes = simsizes;
 

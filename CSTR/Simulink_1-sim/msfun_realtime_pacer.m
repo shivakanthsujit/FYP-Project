@@ -25,7 +25,7 @@ setup(block);
         block.NumContStates = 0;
         block.NumDworks = 0;
         
-        % Register the parameters.
+        % Register the params.
         block.NumDialogPrms     = 1; % scale factor
         block.DialogPrmsTunable = {'Nontunable'};
         

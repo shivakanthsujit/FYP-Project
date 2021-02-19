@@ -24,7 +24,7 @@ setup(block);
         block.NumContStates = 0;
         block.NumDworks = 0;
         
-        % Register the parameters.
+        % Register the params.
         block.NumDialogPrms     = 0; % scale factor        
         
         % Block is fixed in minor time step, i.e., it is only executed on major

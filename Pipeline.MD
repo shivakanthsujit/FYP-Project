@@ -24,16 +24,16 @@
 3. Construct the rule base from expert knowledge using Eq 16
 4. Calculate the strength of each rule using Eq. 18 by choosing appropriate fuzzy conjunctive/disjunctive operators
 5. Calculate the l firing strengths using Eq. 20
-6. Calculate the parameters $c_a$ and $e_a$ of the aggregated output DF using equation 24.
+6. Calculate the params $c_a$ and $e_a$ of the aggregated output DF using equation 24.
 7. Generate the aggregated output DF using Eq. 23
 8. Get the crisp output control signal u by calculating the COG of the aggregated output DF using Eq 9 or Eq 11
 
 ## Things to do
 
-* Define the DFs for Error and dy. Find suitable parameters from the paper graphs.
+* Define the DFs for Error and dy. Find suitable params from the paper graphs.
 * Decide on the rule base for the process.
-* Design a pipeline for the following
-  * The input to the pipeline will be the current Error and dy
+* Design a fuzzy_controller for the following
+  * The input to the fuzzy_controller will be the current Error and dy
   * Fuzzify these inputs to each DF that is defined using it. So there will be 3 fuzzy values for Error and same for dy.
   * Use the parametric equation (the one in Eq. 18) to evaluate each rule.
     * For example. Assume the rule is "If (Error is _High_) and (dy is _Don't Care_) then output is _Close Fast_.
@@ -42,11 +42,11 @@
     * You have to repeat this for each rule that you have.
     * Now if you have l rules, you will have l strengths of these rules, denoted by w_hat_i.
     * Normalize these strengths by dividing each strength by the sum of l strengths. This normalised value is called the firing strength of the rule.
-    * Now take the DFs that represent the consequents of the rules. In this case it is _Close Fast_. Each rule will have a corresponding DF, with its parameters $c_i$ and $epsilon_i$.
-    * The output of the rule base is a DF which is the weighted sum of each DF. We can directly calculate the parameters of this new DF using the firing strengths $w_i$, $c_i$ and $epsilon_i$.
+    * Now take the DFs that represent the consequents of the rules. In this case it is _Close Fast_. Each rule will have a corresponding DF, with its params $c_i$ and $epsilon_i$.
+    * The output of the rule base is a DF which is the weighted sum of each DF. We can directly calculate the params of this new DF using the firing strengths $w_i$, $c_i$ and $epsilon_i$.
     * The new $c_{agg}$ is the weighted sum of $c_i$s and likewise for $epsilon_{agg}$. Find these.
     * With these values, we define the aggregated output DF $DF_{agg}$. To get the defuzzified output o the controller, we find the COG of $DF_{agg}$ using Eq. 9 and 11. Pro-tip, for a symmetric DF, the COG is $c$. So $c_{agg}$ is the output of the DF and can be obtained directly from above.
-    * The final output of the pipeline will be the COG. Return this value.
+    * The final output of the fuzzy_controller will be the COG. Return this value.
 
 ## 16th Feb
 

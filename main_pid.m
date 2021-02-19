@@ -5,7 +5,7 @@ format long e
 global_variables;
 
 global qin
-global limitsq
+global limits_sq
 
 % Operating Points
 qin=25;
