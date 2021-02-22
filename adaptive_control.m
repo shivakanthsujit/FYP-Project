@@ -19,8 +19,8 @@ function result= adaptive_control(y_true, y_ref, tolerance, dy)
             [3 2]
         }
 
-        w_hats = zeroes(length(w_hat_rules), 1);
-        w = zeroes(length(w_hat_rules), 1);
+        w_hats = zeros(length(w_hat_rules), 1);
+        w = zeros(length(w_hat_rules), 1);
         for i=1:length(w_hat_rules);
         w_hats(i) = parametric([error_f(w_hat_rules{i}(1)) dy_f(w_hat_rules{i}(2))], 1, 1); 
         end

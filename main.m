@@ -25,7 +25,6 @@ g = 9.8;
 hmin=0.05;
 qout = Ao*sqrt(2 * g * h_init);
 
-
 t_init = 0;
 dt = 0.1;
 t_fin = dt;
@@ -34,11 +33,12 @@ h_sp = 1.5;
 t_sp = 1;
 k_sp = fix(t_sp/dt);
 setpoint_vector = [ones(k_sp,1)*h_init;ones(60,1)*h_sp;ones(60,1)*h_init;ones(60,1)*h_sp;ones(21,1)*h_init]; % setpoint vector
-% setpoint_vector = [ones(k_sp,1)*l_bar;ones(length(setpoint_vector)-k_sp,1)*l_sp]; % setpoint vector
+
 tt_final = fix(length(setpoint_vector)*dt);
 tt = 0:dt:tt_final;
 k_fin=length(tt); % Sim Time
 
+k_fin
 q = zeros(k_fin, 1);
 dq = zeros(k_fin, 1);
 h = zeros(k_fin, 1);
@@ -60,10 +60,15 @@ for k=k_sp:k_fin
     valve_action = fuzzy_controller(E(k), dh(k));
     ratio = (qin/qout);
     temp = qout * ((qin/qout)+valve_action);
+    %q(k)
+    %temp
     q(k) = temp;
 
     qin=q(k);
-    [t,m1] = ode45('level',[t_init,t_fin],s_s1);
+    t_init
+    t_fin
+    s_s1
+    [t,m1] = ode45('level',[t_init,t_fin], s_s1);
     s_s1(1) = max(hmin, m1(length(t),1));
     h(k+1)=s_s1(1);
 
