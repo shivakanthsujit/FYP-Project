@@ -1,6 +1,7 @@
 global w_hat_rules
-global param_e
-global param_dy
+global parametersE
+global parametersdy
+global parametersq
 global c_agg
 function result= adaptive_control(y_true, y_ref, tolerance, dy)
 
@@ -30,9 +31,12 @@ function result= adaptive_control(y_true, y_ref, tolerance, dy)
 
 
             [ _ , index] = max(w);
+            c = cellfun(@(a) a(1, 4), parametersq);
 
-            k1 = c_agg*w_sum -  
-            k2 = w_sum - w_hats[index];
+            c_agg = pipeline(error, dy)
+
+            k1 = c_agg*w_sum - c(index)
+            k2 = w_sum - w_hats(index)
             if error_f(w_hats_rules{index}(1)) > dy_f(w_hats_rules{index}(2))
                 DF_index = w_hats_rules{index}(1);
                 old_epsilon = param_e{DF_index}(2);
