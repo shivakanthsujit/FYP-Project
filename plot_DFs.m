@@ -6,19 +6,21 @@ global limitsE
 global limitsdy
 global limitsq
 global params
+global fuzzynames
+global fuzzymems
 
 params = 1;
 global_variables;
-choice = 1;
+choice = 3;
 
 switch choice
-    case 0
+    case 1
         parameters = parametersE;
         limits = limitsE;
-    case 1
+    case 2
         parameters = parametersdy;
         limits = limitsdy;
-    case 2
+    case 3
         parameters = parametersq;
         limits = limitsq;
 end
@@ -48,3 +50,7 @@ plot(inp, out{k})
 hold on
 end
 xlim(limits)
+legend(fuzzynames{choice})
+ylabel("Membership Value")
+xlabel(fuzzymems(choice))
+

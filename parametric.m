@@ -7,5 +7,5 @@ inner = inner - 1;
 inner = inner / gmma;
 inner = inner^(1/alpha);
 inner = inner + 1;
-result = 1/inner; 
+result = 1/inner;
 end

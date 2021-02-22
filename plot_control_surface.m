@@ -19,3 +19,6 @@ for i=1:m
     end
 end
 surf(dy, E, q)
+xlabel("Level Rate")
+ylabel("Level Error")
+zlabel("Valve Action")
