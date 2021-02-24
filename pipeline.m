@@ -19,14 +19,8 @@ for i=1:length(w_hat_rules)
 w_hats(i) = parametric([E(w_hat_rules{i}(1)) dy(w_hat_rules{i}(2))], 1, 1);
 end
 
-
-w_sum = w_hat1 + w_hat2 + w_hat3 + w_hat4 + w_hat5;
-w1 = w_hat1/w_sum;
-w2 = w_hat2/w_sum;
-w3 = w_hat3/w_sum;
-w4 = w_hat4/w_sum;
-w5 = w_hat5/w_sum;
-w = [w1 w2 w3 w4 w5];
+w_sum = sum(w_hats);
+w = w_hats/w_sum;
 
 c = cellfun(@(a) a(1, 4), parametersq);
 e = cellfun(@(a) a(1, 2), parametersq);
