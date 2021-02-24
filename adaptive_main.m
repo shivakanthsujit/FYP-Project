@@ -2,11 +2,6 @@ clc;
 clearvars;
 format long e
 
-
-global params
-params = 1;
-global_variables;
-
 global qin
 global qout
 global Ao
