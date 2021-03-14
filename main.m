@@ -44,13 +44,14 @@ dq = zeros(kfinal, 1);
 h = zeros(kfinal, 1);
 E = zeros(kfinal, 1);
 dh = zeros(kfinal, 1);
-
+valve_array = zeros(kfinal, 1);
 for k=1:ksp
 q(k)=q_init;
 dq(k) = 0;
 h(k)=h_init;
 E(k)=0;
 dh(k) = 0;
+valve_array(k) = 0.0;
 end
 
 for k=ksp:kfinal
@@ -58,9 +59,10 @@ for k=ksp:kfinal
 E(k)=r(k)-h(k);
 dh(k) = h(k) - h(k-1);
 
-valve_action = pipeline(E(k), dh(k));
+valve_array(k) = pipeline(E(k), dh(k));
+
 ratio = (qin/qout);
-temp = qout * ((qin/qout)+valve_action);
+temp = qout * ((qin/qout)+valve_array(k));
 q(k) = temp;
 
 qin=q(k);
@@ -104,3 +106,12 @@ ylabel("Water Level Error in [m]")
 xlabel("Time in [s]")
 xlim([t_in t_end])
 title("Water Level Error")
+
+figure
+plot(tt, valve_array(1:t_l))
+grid on
+legend("u")
+ylabel("Controller Output")
+xlabel("Time in [s]")
+xlim([t_in t_end])
+title("Controller Output")
