@@ -1,5 +1,5 @@
-clc;
-clearvars;
+% clc;
+% clearvars;
 format long e
 
 global qin
@@ -16,7 +16,7 @@ h_init= 0.5;
 s_s1= h_init;
 Ao = 8;
 At = 10;
-g = 9.8;
+g = 5;
 hmin=0.05;
 qout = Ao*sqrt(2 * g * h_init);
 
@@ -25,6 +25,7 @@ tinitial = 0;
 dt = 0.1;
 tfinal = dt;
 
+tolerance = 0.0001;
 h_sp = 1.5;
 timesp = 1;
 ksp = fix(timesp/dt);
@@ -52,11 +53,10 @@ for k=ksp:kfinal
 
 E(k)=r(k)-h(k);
 dh(k) = h(k) - h(k-1);
-
-valve_action = pipeline(E(k), dh(k));
-adaptive_control(h(k), r(k), 0.01, dh(k));
+valve_action(k) = pipeline(E(k), dh(k));
+adaptive_control(0.001, valve_action(k) , tolerance, dh(k), r(k)-h(k));
 ratio = (qin/qout);
-temp = qout * ((qin/qout)+valve_action);
+temp = qout * ((qin/qout)+valve_action(k)); %temp = qin
 q(k) = temp;
 
 qin=q(k);
@@ -67,32 +67,34 @@ h(k+1)=s_s1(1);
 tinitial = tfinal;
 tfinal = tfinal+dt;
 end
-
+sum(E.^2)
 t_l = length(tt);
 t_in = tt(1);
 t_end = tt(t_l);
 
+figure(1)
+% subplot(2,1,1)
+% stairs(tt, r(1:t_l), '--')
+% hold on
+% plot(tt, h(1:t_l))
+% grid on
+% legend("Setpoint", "Plant Output")
+% ylabel("Water Level in [m]")
+% xlabel("Time in [s]")
+% xlim([t_in t_end])
+% title("Setpoint Tracking")
+
+% subplot(2,2,3)
+% plot(tt, q(1:t_l))
+% grid on
+% legend("qc")
+% ylabel("Input Flow Rate in [l/min]")
+% xlabel("Time in [s]")
+% xlim([t_in t_end])
+% title("Input Flow Rate")
+
 subplot(2,1,1)
-stairs(tt, r(1:t_l), '--')
-hold on
-plot(tt, h(1:t_l))
-grid on
-legend("Setpoint", "Plant Output")
-ylabel("Water Level in [m]")
-xlabel("Time in [s]")
-xlim([t_in t_end])
-title("Setpoint Tracking")
 
-subplot(2,2,3)
-plot(tt, q(1:t_l))
-grid on
-legend("qc")
-ylabel("Input Flow Rate in [l/min]")
-xlabel("Time in [s]")
-xlim([t_in t_end])
-title("Input Flow Rate")
-
-subplot(2,2,4)
 plot(tt, E(1:t_l))
 grid on
 legend("Error")
@@ -100,3 +102,13 @@ ylabel("Water Level Error in [m]")
 xlabel("Time in [s]")
 xlim([t_in t_end])
 title("Water Level Error")
+
+subplot(2,1,2)
+plot(tt, valve_action(1:t_l))
+grid on
+legend("Valve action")
+ylabel("Valve action")
+xlabel("Time in [s]")
+xlim([t_in t_end])
+title("Valve action")
+
