@@ -4,7 +4,7 @@ format long e
 
 
 global params
-params = 1;
+params = 0;
 global_variables;
 
 global qin
@@ -13,18 +13,23 @@ global Ao
 global g
 global At
 global hmin
+global hmax
+global qmax
+global qmin
 
 % Operating Points
-qin=25;
-q_init= qin;
 h_init= 0.5;
 s_s1= h_init;
-Ao = 8;
-At = 10;
+Ao = 0.05;
+At = 1;
 g = 9.8;
+hmax = 2;
 hmin=0.05;
 qout = Ao*sqrt(2 * g * h_init);
-
+qin= qout;
+q_init= qin;
+qmin = 0;
+qmax = 0.5;
 
 tinitial = 0;
 dt = 0.1;

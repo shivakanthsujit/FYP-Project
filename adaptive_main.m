@@ -8,17 +8,19 @@ global Ao
 global g
 global At
 global hmin
+global hmax
 
 % Operating Points
-qin=25;
-q_init= qin;
 h_init= 0.5;
 s_s1= h_init;
-Ao = 8;
-At = 10;
-g = 5;
+Ao = 0.05;
+At = 1;
+g = 9.8;
+hmax = 2;
 hmin=0.05;
 qout = Ao*sqrt(2 * g * h_init);
+qin= qout;
+q_init= qin;
 
 
 tinitial = 0;
