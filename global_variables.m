@@ -12,7 +12,7 @@ switch params
         % v, epsilon lamda c
         parametersE = {
                         [0.6 0.3 2.6 -1],
-                        [0.7 0.3 6.7 0],
+                        [0.7 0.45 8 0],
                         [0.6 0.3 2.6 1]
                         };
         limitsE = [-1 1];
@@ -35,9 +35,33 @@ switch params
     case 1
         % v, epsilon lamda c
         parametersE = {
+                        [0.5 0.5 2 -1],
+                        [0.5 0.4 2 0],
+                        [0.5 0.5 2 1]
+                        };
+        limitsE = [-1 1];
+
+        parametersdy = {
+                        [0.5 0.1 2 -0.1],
+                        [0.5 0.05 2 0],
+                        [0.5 0.1 2 0.1]
+                        };
+        limitsdy = [-0.1 0.1];
+
+        parametersq = {
                         [0.5 0.3 2 -1],
+                        [0.5 0.2 2 -0.5],
                         [0.5 0.1 2 0],
+                        [0.5 0.2 2 0.5],
                         [0.5 0.3 2 1]
+                        };
+        limitsq = [-1 1];
+   case 2
+        % v, epsilon lamda c
+        parametersE = {
+                        [0.5 0.5 2 -1],
+                        [0.5 0.4 2 0],
+                        [0.5 0.5 2 1]
                         };
         limitsE = [-1 1];
 

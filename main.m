@@ -4,7 +4,7 @@ format long e
 
 
 global params
-params = 0;
+params = 2;
 global_variables;
 
 global qin
@@ -18,18 +18,31 @@ global qmax
 global qmin
 
 % Operating Points
+qin=25;
+q_init= qin;
 h_init= 0.5;
 s_s1= h_init;
-Ao = 0.05;
-At = 1;
+Ao = 8;
+At = 10;
 g = 9.8;
-hmax = 2;
-hmin=0.05;
+hmin = 0.05;
+hmax = 3.0;
 qout = Ao*sqrt(2 * g * h_init);
-qin= qout;
-q_init= qin;
 qmin = 0;
-qmax = 0.5;
+qmax = 100;
+
+% h_init= 0.5;
+% s_s1= h_init;
+% Ao = 0.05;
+% At = 1;
+% g = 9.8;
+% hmax = 2;
+% hmin=0.05;
+% qout = Ao*sqrt(2 * g * h_init);
+% qin= qout;
+% q_init= qin;
+% qmin = 0;
+% qmax = 0.5;
 
 tinitial = 0;
 dt = 0.1;
@@ -66,11 +79,10 @@ dh(k) = h(k) - h(k-1);
 valve_action = pipeline(E(k), dh(k));
 ratio = (qin/qout);
 temp = qout * ((qin/qout)+valve_action);
-q(k) = temp;
-
+q(k) = min(qmax, max(qmin, temp));
 qin=q(k);
-[t,m1] = ode45('level',[tinitial,tfinal],s_s1);
-s_s1(1) = max(hmin, m1(length(t),1));
+[t,m1] = ode45('level',[tinitial,tfinal],s_s1(1));
+s_s1(1) = min(hmax, max(hmin, m1(length(t),1)));
 h(k+1)=s_s1(1);
 
 tinitial = tfinal;
@@ -92,7 +104,8 @@ xlabel("Time in [s]")
 xlim([t_in t_end])
 title("Setpoint Tracking")
 
-subplot(2,2,3)
+subplot(2,1,2)
+% subplot(2,2,3)
 plot(tt, q(1:t_l))
 grid on
 legend("qc")
@@ -101,11 +114,11 @@ xlabel("Time in [s]")
 xlim([t_in t_end])
 title("Input Flow Rate")
 
-subplot(2,2,4)
-plot(tt, E(1:t_l))
-grid on
-legend("Error")
-ylabel("Water Level Error in [m]")
-xlabel("Time in [s]")
-xlim([t_in t_end])
-title("Water Level Error")
+% subplot(2,2,4)
+% plot(tt, E(1:t_l))
+% grid on
+% legend("Error")
+% ylabel("Water Level Error in [m]")
+% xlabel("Time in [s]")
+% xlim([t_in t_end])
+% title("Water Level Error")

@@ -11,16 +11,26 @@ global hmin
 global hmax
 
 % Operating Points
+qin=25;
+q_init= qin;
 h_init= 0.5;
 s_s1= h_init;
-Ao = 0.05;
-At = 1;
+Ao = 8;
+At = 10;
 g = 9.8;
-hmax = 2;
 hmin=0.05;
 qout = Ao*sqrt(2 * g * h_init);
-qin= qout;
-q_init= qin;
+
+% h_init= 0.5;
+% s_s1= h_init;
+% Ao = 0.05;
+% At = 1;
+% g = 9.8;
+% hmax = 2;
+% hmin=0.05;
+% qout = Ao*sqrt(2 * g * h_init);
+% qin= qout;
+% q_init= qin;
 
 
 tinitial = 0;
@@ -74,43 +84,42 @@ t_l = length(tt);
 t_in = tt(1);
 t_end = tt(t_l);
 
-figure(1)
-% subplot(2,1,1)
-% stairs(tt, r(1:t_l), '--')
-% hold on
-% plot(tt, h(1:t_l))
-% grid on
-% legend("Setpoint", "Plant Output")
-% ylabel("Water Level in [m]")
-% xlabel("Time in [s]")
-% xlim([t_in t_end])
-% title("Setpoint Tracking")
+subplot(2,1,1)
+stairs(tt, r(1:t_l), '--')
+hold on
+plot(tt, h(1:t_l))
+grid on
+legend("Setpoint", "Plant Output")
+ylabel("Water Level in [m]")
+xlabel("Time in [s]")
+xlim([t_in t_end])
+title("Setpoint Tracking")
 
 % subplot(2,2,3)
-% plot(tt, q(1:t_l))
+subplot(2,1,2)
+plot(tt, q(1:t_l))
+grid on
+legend("qc")
+ylabel("Input Flow Rate in [l/min]")
+xlabel("Time in [s]")
+xlim([t_in t_end])
+title("Input Flow Rate")
+
+% subplot(2,1,1)
+% plot(tt, E(1:t_l))
 % grid on
-% legend("qc")
-% ylabel("Input Flow Rate in [l/min]")
+% legend("Error")
+% ylabel("Water Level Error in [m]")
 % xlabel("Time in [s]")
 % xlim([t_in t_end])
-% title("Input Flow Rate")
-
-subplot(2,1,1)
-
-plot(tt, E(1:t_l))
-grid on
-legend("Error")
-ylabel("Water Level Error in [m]")
-xlabel("Time in [s]")
-xlim([t_in t_end])
-title("Water Level Error")
-
-subplot(2,1,2)
-plot(tt, valve_action(1:t_l))
-grid on
-legend("Valve action")
-ylabel("Valve action")
-xlabel("Time in [s]")
-xlim([t_in t_end])
-title("Valve action")
+% title("Water Level Error")
+% 
+% subplot(2,1,2)
+% plot(tt, valve_action(1:t_l))
+% grid on
+% legend("Valve action")
+% ylabel("Valve action")
+% xlabel("Time in [s]")
+% xlim([t_in t_end])
+% title("Valve action")
 

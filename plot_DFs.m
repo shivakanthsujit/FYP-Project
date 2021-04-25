@@ -7,9 +7,9 @@ global limitsdy
 global limitsq
 global params
 
-params = 1;
+params = 0;
 global_variables;
-choice = 1;
+choice = 0;
 
 switch choice
     case 0
@@ -48,3 +48,4 @@ plot(inp, out{k})
 hold on
 end
 xlim(limits)
+grid on
