@@ -4,7 +4,7 @@ format long e
 
 
 global params
-params = 0;
+params = 1;
 global_variables;
 
 global qin

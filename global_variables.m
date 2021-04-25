@@ -35,9 +35,9 @@ switch params
     case 1
         % v, epsilon lamda c
         parametersE = {
-                        [0.5 0.3 2 -1],
-                        [0.5 0.1 2 0],
-                        [0.5 0.3 2 1]
+                        [0.5 0.1 2 -1],
+                        [0.5 0 2 0],
+                        [0.5 0.1 2 1]
                         };
         limitsE = [-1 1];
 
